@@ -25,11 +25,17 @@ class MainActivity : AppCompatActivity() {
             getString(R.string.text_total, total)
     }
 
-    private fun prepareViewModel() {
-        
+    private fun prepareViewModel(){
+        // Observe the LiveData object
+        viewModel.total.observe(this) {
+            // Whenever the value of the LiveData object changes
+            // the updateText() is called, with the new value as the parameter
+            updateText(it)
+        }
+
         findViewById<Button>(R.id.button_increment).setOnClickListener {
-            val newTotal = viewModel.incrementTotal()
-            updateText(newTotal)
+            viewModel.incrementTotal()
         }
     }
+
 }
