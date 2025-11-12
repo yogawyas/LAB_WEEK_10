@@ -11,15 +11,15 @@ class TotalViewModel : ViewModel() {
 
     // Initialize the LiveData object
     init {
-        // postValue is used to set the value of the LiveData object
-        // from a background thread or the main thread
-        // While on the other hand setValue() is used
-        // only if you're on the main thread
         _total.postValue(0)
     }
 
     // Increment the total value
     fun incrementTotal() {
         _total.postValue(_total.value?.plus(1))
+    }
+
+    fun setTotal(newTotal: Int) {
+        _total.postValue(newTotal)
     }
 }
